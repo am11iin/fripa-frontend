@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fripa - Accueil</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/home.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">Fripa</div>
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="products.html">Produits</a>
+    <a href="cart.html">Panier (<span id="cart-count">0</span>)</a>
+    <button class="btn-primary" onclick="adminLoginPrompt()">Admin</button>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Découvrez nos produits exclusifs</h1>
+  <p>Shopping minimaliste, moderne et élégant</p>
+  <a href="products.html" class="btn-primary">Voir Produits</a>
+</section>
+
+<!-- Updated homepage to dynamically fetch featured products -->
+<section class="featured-products">
+  <h2>Produits en vedette</h2>
+  <div class="product-grid" id="featured-products"></div>
+</section>
+
+<footer class="footer">
+  <div class="footer-links">
+    <a href="products.html">Produits</a>
+    <a href="contact.html">Contact</a>
+    <a href="#">Réseaux sociaux</a>
+  </div>
+  <p>&copy; 2025 Fripa. Tous droits réservés.</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/products.js"></script>
+</body>
+</html>

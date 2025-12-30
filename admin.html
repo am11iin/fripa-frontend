@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Admin - Fripa</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">Fripa Admin</div>
+  <button class="btn-primary" onclick="window.location.href='index.html'">Retour</button>
+</header>
+
+<main class="admin-container">
+
+  <section class="add-product">
+    <h2>Ajouter un produit</h2>
+    <div class="product-form">
+      <input type="text" id="product-name" placeholder="Nom du produit">
+      <input type="number" id="product-price" placeholder="Prix en DA">
+      <textarea id="product-description" placeholder="Description du produit" rows="3"></textarea>
+      <input type="text" id="product-image" placeholder="URL de l'image">
+      <button class="btn-primary" onclick="addProduct()">Ajouter le produit</button>
+    </div>
+  </section>
+
+  <section class="product-list">
+    <h2>Produits</h2>
+    <div id="admin-products"></div>
+  </section>
+
+  <section class="orders">
+    <h2>Commandes</h2>
+    <div id="orders-list"></div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-links">
+    <a href="products.html">Produits</a>
+    <a href="contact.html">Contact</a>
+    <a href="#">Réseaux sociaux</a>
+  </div>
+  <p>&copy; 2025 Fripa. Tous droits réservés.</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/admin.js"></script>
+<script>
+  // Vérifier l'accès admin
+  checkAdminAccess();
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+/* --- SECTION PRODUITS VEDETTES --- */
+.featured-products {
+  padding: 6rem 5% 2rem;
+  background-color: var(--bg-dark);
+}
+
+.featured-products h2 {
+  text-align: center;
+  margin: 0 auto 4rem;
+  
+  /* Typographie de luxe */
+  font-family: var(--font-display); /* Playfair Display */
+  font-size: clamp(2rem, 5vw, 3rem); /* Taille fluide selon l'écran */
+  color: var(--accent-white);
+  font-weight: 400; /* Plus fin = plus élégant */
+  font-style: italic; /* Touche éditoriale */
+  letter-spacing: -0.5px;
+  
+  /* Décoration subtile */
+  position: relative;
+  display: table; /* Pour que la bordure du dessous s'adapte à la largeur du texte */
+}
+
+/* Ajout d'une ligne de séparation élégante sous le titre */
+.featured-products h2::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background-color: var(--text-dim);
+  margin: 1.5rem auto 0;
+}
+
+/* Support pour mobile */
+@media (max-width: 768px) {
+  .featured-products {
+    padding: 4rem 5% 1rem;
+  }
+  .featured-products h2 {
+    font-size: 2.2rem;
+  }
+}

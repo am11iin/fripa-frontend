@@ -1,0 +1,123 @@
+/* --- UI COMPONENTS FRIPA (LUXURY OPTIMIZED) --- */
+
+/* Navbar Minimaliste */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(5, 5, 5, 0.85); /* Plus sombre */
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.navbar-brand {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.navbar-link {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 500;
+}
+
+/* Product Card (Gallery Style) */
+.product-card {
+  background-color: transparent; /* Pas de fond pour un look plus propre */
+  border-radius: 0; /* Angles droits */
+  border: none;
+}
+
+.product-card-image {
+  height: 420px; /* Plus élancé */
+  overflow: hidden;
+  border-radius: 0;
+}
+
+.product-card-image img {
+  transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.product-card:hover .product-card-image img {
+  transform: scale(1.08);
+}
+
+.product-card-title {
+  font-family: var(--font-main); /* Sans-serif pour les titres de grille */
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-top: 1.5rem;
+}
+
+.product-card-price {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--primary-gray);
+}
+
+/* Modal (Luxe Glassmorphism) */
+.modal {
+  background-color: rgba(0, 0, 0, 0.95); /* Fond très noir */
+}
+
+.modal-content {
+  background-color: var(--primary-black);
+  border-radius: 0;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Toasts (Subtils) */
+.toast {
+  background-color: var(--secondary-black);
+  border-radius: 0;
+  border: 1px solid var(--glass-border);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Search & Inputs (Underline Style) */
+.search-input, .filter-select, .form-input {
+  background-color: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid var(--tertiary-black) !important;
+  border-radius: 0 !important;
+  padding: 0.8rem 0 !important;
+  font-size: 0.9rem;
+  transition: border-bottom-color 0.4s ease !important;
+}
+
+.search-input:focus, .filter-select:focus {
+  border-bottom-color: var(--off-white) !important;
+  outline: none;
+}
+
+/* Pagination (Minimal) */
+.pagination-btn {
+  border-radius: 0;
+  border: 1px solid var(--tertiary-black);
+  background-color: transparent;
+  font-size: 0.8rem;
+}
+
+.pagination-btn:hover, .pagination-btn.active {
+  background-color: var(--off-white);
+  color: var(--primary-black);
+  border-color: var(--off-white);
+}
+
+/* Loader (Elegant) */
+.loader {
+  border: 1px solid rgba(255,255,255,0.1);
+  border-top-color: var(--off-white);
+  width: 30px;
+  height: 30px;
+}

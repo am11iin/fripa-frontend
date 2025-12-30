@@ -1,0 +1,114 @@
+/* Design System FRIPA - Modern Luxury Edition */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  --primary-black: #050505; /* Noir plus profond */
+  --secondary-black: #121212;
+  --tertiary-black: #1a1a1a;
+  --border-subtle: rgba(255, 255, 255, 0.08); /* Bordures ultra fines */
+  --primary-gray: #a1a1a1;
+  --secondary-gray: #666666;
+  --off-white: #f8f8f8;
+  
+  /* Typographie */
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Poppins', sans-serif;
+  
+  /* Ajout du Glassmorphism */
+  --glass-bg: rgba(18, 18, 18, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+/* Global Smoothness */
+body {
+  background-color: var(--primary-black);
+  color: var(--off-white);
+  font-family: var(--font-sans);
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- TITRES ÉDITORIAUX --- */
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--off-white);
+}
+
+h1 { font-size: clamp(2.5rem, 8vw, 4rem); } /* Taille adaptative */
+h2 { font-size: clamp(2rem, 5vw, 3rem); font-style: italic; }
+
+/* --- NAVBAR GLASSMORPHISM --- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 1rem 5%;
+}
+
+/* --- BOUTONS HAUTE COUTURE --- */
+.btn {
+  border-radius: 0; /* Les coins droits sont plus "Pro/Luxe" */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary {
+  background-color: var(--off-white);
+  color: var(--primary-black);
+  border: 1px solid var(--off-white);
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  color: var(--off-white);
+  transform: none; /* Pas de mouvement, juste un changement de couleur */
+}
+
+/* --- CARDS & GRID --- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2.5rem;
+  padding: var(--spacing-lg) 0;
+}
+
+.card {
+  background-color: transparent; /* Fond transparent pour les cards de produits */
+  border-radius: 0;
+  border: none;
+  transition: opacity 0.3s ease;
+}
+
+.card img {
+  width: 100%;
+  aspect-ratio: 4/5; /* Ratio mode premium */
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.card:hover img {
+  transform: scale(1.05); /* Zoom très lent et élégant */
+}
+
+/* --- BARRE DE RECHERCHE --- */
+.form-input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--tertiary-black);
+  border-radius: 0;
+  padding: 1rem 0;
+  font-size: 1.1rem;
+}
+
+.form-input:focus {
+  border-bottom-color: var(--off-white);
+}

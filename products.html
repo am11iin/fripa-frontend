@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fripa - Produits</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/products.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">Fripa</div>
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="products.html">Produits</a>
+    <a href="cart.html">Panier (<span id="cart-count">0</span>)</a>
+    <button class="btn-primary" onclick="adminLoginPrompt()">Admin</button>
+  </nav>
+</header>
+
+<!-- Updated products page to dynamically fetch all products -->
+<section class="products-listing">
+  <h1>Tous les produits</h1>
+  <input type="text" id="search-bar" placeholder="Rechercher un produit..." onkeyup="searchProducts()">
+  <div class="product-grid" id="products-container"></div>
+</section>
+
+<footer class="footer">
+  <div class="footer-links">
+    <a href="products.html">Produits</a>
+    <a href="contact.html">Contact</a>
+    <a href="#">Réseaux sociaux</a>
+  </div>
+  <p>&copy; 2025 Fripa. Tous droits réservés.</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/products.js"></script>
+</body>
+</html>

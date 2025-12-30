@@ -1,0 +1,39 @@
+<section class="checkout-form" id="checkout-form" style="display: none;">
+  <h2>Valider votre commande</h2>
+  <form id="order-form">
+    <input type="text" id="user-name" placeholder="Nom complet" required>
+    <input type="email" id="user-email" placeholder="Email" required>
+    <input type="text" id="user-phone" placeholder="Téléphone" required>
+    <textarea id="user-address" placeholder="Adresse complète" required></textarea>
+    <button type="submit" class="btn-primary">Valider la commande</button>
+  </form>
+</section>
+
+<script>
+  document.getElementById('order-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const userName = document.getElementById('user-name').value;
+    const userEmail = document.getElementById('user-email').value;
+    const userPhone = document.getElementById('user-phone').value;
+    const userAddress = document.getElementById('user-address').value;
+
+    try {
+      await apiCall('/orders', {
+        method: 'POST',
+        body: JSON.stringify({
+          user_name: userName,
+          user_email: userEmail,
+          user_phone: userPhone,
+          user_address: userAddress,
+          products: cart.map(product => product.id)
+        })
+      });
+      alert('Commande validée avec succès !');
+      localStorage.removeItem('cart');
+      window.location.href = 'index.html';
+    } catch (error) {
+      alert(error.message || 'Erreur serveur');
+    }
+  });
+</script>

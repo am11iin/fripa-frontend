@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fripa - Panier</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">Fripa</div>
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="products.html">Produits</a>
+    <a href="cart.html">Panier (<span id="cart-count">0</span>)</a>
+    <button class="btn-primary" onclick="adminLoginPrompt()">Admin</button>
+  </nav>
+</header>
+
+<section class="cart-section">
+  <div class="container">
+    <h1>Votre Panier</h1>
+    <div id="cart-items"></div>
+    <div class="cart-summary">
+      <div class="cart-total">
+        <h3>Total : <span id="cart-total">0</span> DA</h3>
+      </div>
+      <div class="cart-actions">
+        <button class="btn-primary" onclick="checkoutAll()">Valider toute la commande</button>
+        <button class="btn-secondary" onclick="clearCart()">Vider le panier</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-links">
+    <a href="products.html">Produits</a>
+    <a href="contact.html">Contact</a>
+    <a href="#">Réseaux sociaux</a>
+  </div>
+  <p>&copy; 2025 Fripa. Tous droits réservés.</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  // Afficher le panier avec produits individuels
+  function displayCart() {
+    const container = document.getElementById('cart-items');
+    const totalElement = document.getElementById('cart-total');
+    
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    if (cart.length === 0) {
+      container.innerHTML = '<p style="text-align: center; color: #888; padding: 2rem;">Votre panier est vide.</p>';
+      totalElement.textContent = '0';
+      return;
+    }
+
+    let totalPrice = 0;
+    container.innerHTML = cart.map((item, index) => {
+      const itemTotal = item.price * item.quantity;
+      totalPrice += itemTotal;
+      
+      return `
+        <div class="cart-item" style="background: var(--secondary-black); padding: 1rem; margin-bottom: 1rem; border-radius: 12px; border: 1px solid var(--tertiary-black);">
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <img src="${item.image_url || 'https://via.placeholder.com/80x80/333/fff?text=Produit'}" 
+                 alt="${item.name}" 
+                 style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+            <div style="flex: 1;">
+              <h4 style="color: var(--off-white); margin-bottom: 0.5rem;">${item.name}</h4>
+              <p style="color: var(--primary-gray); margin-bottom: 0.5rem;">${item.price} DA</p>
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <button onclick="updateQuantity(${index}, -1)" 
+                        style="background: var(--tertiary-black); color: var(--off-white); border: none; border-radius: 4px; width: 30px; height: 30px; cursor: pointer;">-</button>
+                <span style="color: var(--off-white); min-width: 30px; text-align: center;">${item.quantity}</span>
+                <button onclick="updateQuantity(${index}, 1)" 
+                        style="background: var(--tertiary-black); color: var(--off-white); border: none; border-radius: 4px; width: 30px; height: 30px; cursor: pointer;">+</button>
+              </div>
+            </div>
+            <div style="text-align: right;">
+              <p style="color: var(--off-white); font-weight: bold; margin-bottom: 0.5rem;">${itemTotal} DA</p>
+              <button onclick="removeFromCart(${index})" 
+                      style="background: #ef4444; color: white; border: none; border-radius: 6px; padding: 0.5rem 1rem; cursor: pointer; font-size: 0.9rem;">Supprimer</button>
+              <button onclick="checkoutSingle(${index})" 
+                      style="background: #10b981; color: white; border: none; border-radius: 6px; padding: 0.5rem 1rem; cursor: pointer; font-size: 0.9rem; margin-top: 0.5rem; display: block;">Payer ce produit</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    totalElement.textContent = totalPrice;
+  }
+
+  // Mettre à jour la quantité
+  function updateQuantity(index, change) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart[index]) {
+      cart[index].quantity += change;
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      displayCart();
+      updateCartCount();
+    }
+  }
+
+  // Supprimer un article
+  function removeFromCart(index) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart[index]) {
+      const itemName = cart[index].name;
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      displayCart();
+      updateCartCount();
+      showToast(`${itemName} supprimé du panier`, 'info');
+    }
+  }
+
+  // Vider le panier
+  function clearCart() {
+    if (confirm('Êtes-vous sûr de vouloir vider votre panier ?')) {
+      localStorage.removeItem('cart');
+      cart = [];
+      displayCart();
+      updateCartCount();
+      showToast('Panier vidé', 'info');
+    }
+  }
+
+  // Payer un seul produit
+  function checkoutSingle(index) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart[index]) {
+      const item = cart[index];
+      
+      // Créer un panier temporaire avec seulement ce produit
+      const singleItemCart = [{
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        image_url: item.image_url,
+        quantity: item.quantity
+      }];
+
+      // Remplacer le panier temporairement pour le checkout
+      const originalCart = cart;
+      cart = singleItemCart;
+      
+      // Lancer le checkout
+      checkout();
+      
+      // Restaurer le panier original après
+      setTimeout(() => {
+        cart = originalCart;
+        localStorage.setItem('cart', JSON.stringify(originalCart));
+      }, 100);
+    }
+  }
+
+  // Payer toute la commande
+  function checkoutAll() {
+    checkout();
+  }
+
+  // Initialiser au chargement
+  window.onload = function() {
+    displayCart();
+    updateCartCount();
+  };
+</script>
+</body>
+</html>

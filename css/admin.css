@@ -1,0 +1,172 @@
+/* --- ADMIN DASHBOARD PRO --- */
+
+.admin-container {
+  padding: var(--spacing-xl) 5%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-xl);
+  background: var(--primary-black);
+  min-height: 100vh;
+}
+
+.admin-container h2 {
+  font-size: 2rem;
+  letter-spacing: -0.5px;
+  border-bottom: 1px solid var(--tertiary-black);
+  padding-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+/* --- SECTION AJOUT PRODUIT (REVISITÉE) --- */
+.add-product {
+  background: var(--secondary-black);
+  padding: var(--spacing-xl);
+  border-radius: 0; /* Garder l'aspect luxe */
+  border: 1px solid var(--border-subtle);
+  max-width: 800px;
+}
+
+.product-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Formulaire sur deux colonnes pour le pro */
+  gap: var(--spacing-md);
+}
+
+.product-form input, 
+.product-form textarea {
+  grid-column: span 2; /* Par défaut toute la largeur */
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--tertiary-black);
+  border-radius: 0;
+  padding: 1rem 0;
+  color: var(--off-white);
+  font-family: var(--font-sans);
+  width: 100%;
+  max-width: none; /* On utilise la grille pour le contrôle */
+  transition: border-bottom-color 0.4s ease;
+}
+
+/* Prix et Stock sur la même ligne */
+.product-form input[name="price"], 
+.product-form input[name="stock"] {
+  grid-column: span 1;
+}
+
+.product-form input:focus, 
+.product-form textarea:focus {
+  outline: none;
+  border-bottom-color: var(--off-white);
+}
+
+/* --- DRAG & DROP ZONE STYLE --- */
+.image-upload-section {
+  grid-column: span 2;
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-lg);
+  border: 1px dashed var(--tertiary-black);
+  background: rgba(255,255,255,0.02);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.image-upload-section:hover {
+  border-color: var(--primary-gray);
+  background: rgba(255,255,255,0.05);
+}
+
+.image-preview-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 10px;
+  border: none;
+  margin-top: 1rem;
+}
+
+/* --- LISTE DES PRODUITS ADMIN --- */
+.product-list {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.admin-product-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--secondary-black);
+  padding: 1rem var(--spacing-lg);
+  border-radius: 0;
+  border: 1px solid var(--border-subtle);
+  margin-bottom: var(--spacing-xs);
+}
+
+.admin-product-card img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin-right: var(--spacing-md);
+}
+
+.admin-product-card-info {
+  flex-grow: 1;
+}
+
+.admin-product-card h4 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Bouton Supprimer Minimaliste */
+.admin-product-card button {
+  background: transparent;
+  color: #ff4444;
+  border: 1px solid #ff4444;
+  border-radius: 0;
+  padding: 0.5rem 1rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.admin-product-card button:hover {
+  background: #ff4444;
+  color: white;
+}
+
+/* --- DASHBOARD ORDERS --- */
+.order-card {
+  background: var(--secondary-black);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--primary-gray); /* Indicateur de statut */
+}
+
+.order-card:hover {
+  border-left-color: var(--off-white);
+}
+
+/* Status Badges */
+.status-badge {
+  padding: 2px 8px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  border-radius: 2px;
+  background: var(--tertiary-black);
+  color: var(--primary-gray);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .product-form {
+    grid-template-columns: 1fr;
+  }
+  .product-form input, .product-form textarea {
+    grid-column: span 1;
+  }
+  .admin-product-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+  }
+}

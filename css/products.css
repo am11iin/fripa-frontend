@@ -1,0 +1,109 @@
+/* --- LISTING DES PRODUITS (REVISITÉ) --- */
+.products-listing {
+  padding: 4rem 5%;
+  background-color: var(--bg-dark);
+}
+
+.products-listing h1 {
+  text-align: left; /* Alignement à gauche pour un look plus éditorial */
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: var(--accent-white);
+  font-weight: 400;
+  letter-spacing: -1px;
+}
+
+/* --- BARRE DE RECHERCHE MINIMALISTE --- */
+#search-bar {
+  display: block;
+  margin: 0 0 4rem 0; /* Alignée à gauche avec le titre */
+  padding: 1rem 0; /* Suppression du padding interne pour un look "souligné" */
+  width: 100%;
+  max-width: 500px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-color); /* Juste une ligne fine */
+  border-radius: 0;
+  color: var(--accent-white);
+  font-size: 1.1rem;
+  font-family: var(--font-main);
+  transition: border-color 0.4s ease;
+}
+
+#search-bar::placeholder {
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.8rem;
+}
+
+#search-bar:focus {
+  border-bottom: 1px solid var(--accent-white);
+  outline: none;
+}
+
+/* --- GRID & CARDS (SYLISH DARK) --- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 3rem 1.5rem; /* Plus d'espace vertical pour laisser respirer le design */
+}
+
+.product-card {
+  background: transparent;
+  border: none; /* On enlève les bordures pour un style "Gallery" */
+  border-radius: 0;
+  box-shadow: none;
+  transition: opacity 0.3s ease;
+}
+
+.product-card:hover {
+  transform: none;
+  box-shadow: none;
+  opacity: 0.8; /* Effet de fondu subtil au survol */
+}
+
+.product-card img {
+  width: 100%;
+  aspect-ratio: 3/4; /* Ratio mode standard */
+  object-fit: cover;
+  border-radius: 0;
+  margin-bottom: 1.5rem;
+  background-color: var(--card-dark);
+}
+
+.product-card h3 {
+  margin: 0;
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent-white);
+  font-weight: 600;
+}
+
+.product-card p {
+  margin: 0.5rem 0 1rem 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+/* Le bouton devient discret, type lien souligné */
+.product-card button {
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--accent-white);
+  color: var(--accent-white);
+  padding: 4px 0;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.product-card button:hover {
+  letter-spacing: 2px;
+}
